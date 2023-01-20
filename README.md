@@ -2,4 +2,4 @@
 JavaScript mini project.
 
 ## about
-Implementing a reviews feature addition
+Implementing a reviews feature addition.
