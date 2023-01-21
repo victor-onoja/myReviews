@@ -50,7 +50,7 @@ text:"I have had the opportunity to work with this software developer on several
 },
 ];
 
-const img = document.getElementById('person-img');
+const image = document.getElementById('person-img'); //as HTMLImageElement;
 const author = document.getElementById('author');
 const job = document.getElementById('job');
 const text = document.getElementById('info');
@@ -59,18 +59,25 @@ const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
 const randomBtn = document.querySelector('.random-btn');
 
-let currentReview = 1;
+let currentReview = 0;
+image.src = reviews[currentReview].img;
 
-function reviewController(index) {
-    const item = reviews[index];
-    img.src = item.img;
+function reviewController() {
+    const item = reviews[currentReview];
     author.textContent = item.name;
     job.textContent = item.job;
     text.textContent = item.text;
+    image.onloadstart = function(){
+        image.src = './loading.svg';
+    };
+    image.onload = function(){
+        image.src = item.img;
+    };
 }
 
+
 window.addEventListener('DOMContentLoaded', function(){
-    reviewController(currentReview);
+    reviewController();
 });
 
 nextBtn.addEventListener('click', function(){
@@ -78,7 +85,7 @@ nextBtn.addEventListener('click', function(){
     if (currentReview > reviews.length - 1){
         currentReview = 0;
     }
-    reviewController(currentReview);
+    reviewController();
 });
 
 prevBtn.addEventListener('click', function(){
@@ -86,15 +93,10 @@ prevBtn.addEventListener('click', function(){
     if (currentReview < 0){
         currentReview = reviews.length - 1;
     }
-    reviewController(currentReview);
+    reviewController();
 });
 
-function randomReview() {
-    return Math.floor(Math.random() * reviews.length);
-}
-
 randomBtn.addEventListener('click', function(){
-currentReview = randomReview();
-reviewController(currentReview);
-    console.log(randomReview());
+currentReview = Math.floor(Math.random() * reviews.length);
+reviewController();
 });
