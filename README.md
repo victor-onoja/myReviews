@@ -1,5 +1,5 @@
 # myReviews
 JavaScript mini project.
 
-## about
+## About
 Implementing a reviews feature addition.
