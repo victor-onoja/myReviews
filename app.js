@@ -60,19 +60,20 @@ const nextBtn = document.querySelector('.next-btn');
 const randomBtn = document.querySelector('.random-btn');
 
 let currentReview = 0;
-image.src = reviews[currentReview].img;
+// image.src = reviews[currentReview].img;
 
 function reviewController() {
     const item = reviews[currentReview];
     author.textContent = item.name;
     job.textContent = item.job;
     text.textContent = item.text;
-    image.onloadstart = function(){
-        image.src = './loading.svg';
-    };
-    image.onload = function(){
-        image.src = item.img;
-    };
+    image.src = item.img;
+    // image.onloadstart = function(){
+    //     image.src = './loading.svg';
+    // };
+    // image.onload = function(){
+    //     image.src = item.img;
+    // };
 }
 
 
